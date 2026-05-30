@@ -9,6 +9,7 @@ locals {
 # ─── SNS Topic ────────────────────────────────────────────────────────────────
 
 resource "aws_sns_topic" "this" {
+  #checkov:skip=CKV_AWS_26:SNS encryption not required for this alerting use case
   name = "${local.name_prefix}-topic"
   tags = local.common_tags
 }
@@ -80,6 +81,12 @@ data "archive_file" "lambda" {
 }
 
 resource "aws_lambda_function" "this" {
+  #checkov:skip=CKV_AWS_116:DLQ not required for a scheduled polling Lambda
+  #checkov:skip=CKV_AWS_173:Env vars contain no secrets; SNS ARN and integer only
+  #checkov:skip=CKV_AWS_115:Concurrent execution limit not required for this low-frequency Lambda
+  #checkov:skip=CKV_AWS_117:VPC not required for this cross-account monitoring Lambda
+  #checkov:skip=CKV_AWS_50:X-Ray tracing not required for this simple polling Lambda
+  #checkov:skip=CKV_AWS_272:Code signing not required for this internal monitoring Lambda
   function_name    = "${local.name_prefix}-validator"
   role             = aws_iam_role.lambda.arn
   handler          = "ssm_agent_validator.lambda_handler"

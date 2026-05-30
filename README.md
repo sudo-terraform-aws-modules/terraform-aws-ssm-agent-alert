@@ -7,7 +7,7 @@ A reusable Terraform module that sets up automated alerting when an EC2 instance
 ## Architecture
 
 <picture>
-  <img alt="SSM Ping Alert Architecture" src="docs/assets/ssm-ping-alert-correct-diagram.png">
+  <img alt="SSM Ping Alert Architecture" src="docs/assets/ssm-ping-alert-perfect-diagram-updated.png">
 </picture>
 
 ## Prerequisites
@@ -73,7 +73,7 @@ terraform-module-ssm-ping-alert/
 │   └── ssm_agent_validator.py  # Python 3.12 Lambda source
 ├── docs/
 │   ├── assets/
-│   │   └── ssm-ping-alert-correct-diagram.png
+│   │   └── ssm-ping-alert-perfect-diagram-updated.png
 │   └── DEPLOYMENT.md           # Full deployment guide
 ├── .gitignore
 ├── .pre-commit-config.yaml
